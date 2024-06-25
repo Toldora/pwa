@@ -3,7 +3,7 @@
   "name": "MayanBet",
   "scope": "/",
   "display": "standalone",
-  "start_url": "https://pwa.mayanbet.cloud",
+  "start_url": "https://pwa-test.mayanbet.cloud",
   "short_name": "MayanBet",
   "theme_color": "#ffffff",
   "description": "MayanBet",
@@ -18,18 +18,18 @@
       "purpose": "any"
     }
   ],
-  "url": "https://pwa.mayanbet.cloud",
+  "url": "https://pwa-test.mayanbet.cloud",
   "screenshots": [],
   "generated": "",
   "manifest_package": "org.chromium.webapk.test",
-  "scope_url": "https://pwa.mayanbet.cloud",
+  "scope_url": "https://pwa-test.mayanbet.cloud",
   "intent_filters": {
     "scope_url_scheme": "https",
     "scope_url_host": "pwa.mayanbet.cloud",
     "scope_url_path": "/"
   },
   "display_mode": "standalone",
-  "web_manifest_url": "https://pwa.mayanbet.cloud/manifest.json",
+  "web_manifest_url": "https://pwa-test.mayanbet.cloud/manifest.json",
   "version_code": "1",
   "version_name": "1.0",
   "bound_webapk": {
