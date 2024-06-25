@@ -1,3 +1,6 @@
+import { COOKIES_KEY } from '@/const';
+import { goRedirect } from '@/utils/go-redirect';
+
 let deferredPrompt;
 const installButton = document.getElementById('install_button');
 const loading = document.querySelector('.loading');
@@ -20,10 +23,6 @@ if (ua.getBrowser().name !== 'Chrome' && ua.getBrowser().name !== 'Yandex') {
   if (ua.getBrowser().name == 'Chrome WebView') {
     //goLink();
   }
-}
-
-function playApp() {
-  window.open(`https://${window.location.hostname}/?inapp=1`, '_blank');
 }
 
 function ua_log() {}
@@ -109,11 +108,6 @@ function ua_log() {}
 //   });
 // }
 
-function goRedirect() {
-  ua_log('force_redirect');
-  window.location.replace(import.meta.env.VITE_REDIRECT_URL);
-}
-
 // function findGetParameter(parameterName) {
 //   let result = null,
 //     tmp = [];
@@ -165,13 +159,13 @@ window.addEventListener('appinstalled', () => {
   installButton.removeEventListener('click', longInstallApp);
 
   // eslint-disable-next-line no-undef
-  Cookies.set('installed', '1', { expires: 365 });
+  Cookies.set(COOKIES_KEY.appInstalled, '1', { expires: 365 });
   setTimeout(function () {
     installButton.innerHTML = 'Играть';
-    installButton.addEventListener('click', playApp);
+    installButton.addEventListener('click', goRedirect);
 
     // OneSignal.showNativePrompt();
-  }, 8000);
+  }, 3000);
 });
 
 function fastInstallApp() {
