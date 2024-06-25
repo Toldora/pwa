@@ -1,0 +1,39 @@
+{
+  "dir": "ltr",
+  "name": "MayanBet",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "https://pwa.mayanbet.cloud",
+  "short_name": "MayanBet",
+  "theme_color": "#ffffff",
+  "description": "MayanBet",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "https://pwamarket.fra1.digitaloceanspaces.com/2024-02-14/65ccc152b16fb.jpeg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "url": "https://pwa.mayanbet.cloud",
+  "screenshots": [],
+  "generated": "",
+  "manifest_package": "org.chromium.webapk.test",
+  "scope_url": "https://pwa.mayanbet.cloud",
+  "intent_filters": {
+    "scope_url_scheme": "https",
+    "scope_url_host": "pwa.mayanbet.cloud",
+    "scope_url_path": "/"
+  },
+  "display_mode": "standalone",
+  "web_manifest_url": "https://pwa.mayanbet.cloud/manifest.json",
+  "version_code": "1",
+  "version_name": "1.0",
+  "bound_webapk": {
+    "runtime_host": "org.chromium.chrome",
+    "runtime_host_application_name": "Chromium"
+  }
+}

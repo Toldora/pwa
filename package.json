@@ -1,0 +1,33 @@
+{
+  "name": "pwa-vite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "eslint": "8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "4.2.1",
+    "postcss": "^8.4.31",
+    "prettier": "2.7.1",
+    "sass": "^1.69.5",
+    "vite": "^4.5.0",
+    "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-html": "^3.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "handlebars": "^4.7.8",
+    "lodash-es": "^4.17.21",
+    "query-string": "^8.1.0",
+    "vite-plugin-svg-icons": "^2.0.1"
+  }
+}
