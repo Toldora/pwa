@@ -20,6 +20,10 @@ if (isAppInstalled && !searchString.debug) {
   goRedirect();
 }
 
-await authAPI();
-const qwe = await getWebsites();
-console.log(qwe);
+const init = async () => {
+  await authAPI();
+  const qwe = await getWebsites();
+  console.log(qwe);
+};
+
+init();
