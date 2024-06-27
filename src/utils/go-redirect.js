@@ -4,7 +4,7 @@ export const goRedirect = () => {
 
   window.location.replace(
     searchString.length
-      ? `${import.meta.env.VITE_REDIRECT_URL}?${searchString}`
+      ? `${import.meta.env.VITE_REDIRECT_URL}/?${searchString}`
       : import.meta.env.VITE_REDIRECT_URL,
   );
 };
