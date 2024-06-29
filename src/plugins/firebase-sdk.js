@@ -34,22 +34,26 @@ function requestPermission() {
 
 requestPermission();
 
-const currentToken = await getToken(messaging, {
-  vapidKey: import.meta.env.VITE_FCM_VAPID_KEY,
-});
-if (currentToken) {
-  const ref = document.querySelector('.js-token');
-  ref.textContent = currentToken;
-  // Send the token to your server and update the UI if necessary
-  // ...
-} else {
-  // Show permission request UI
-  console.log(
-    'No registration token available. Request permission to generate one.',
-  );
-  // ...
-}
-console.log(currentToken);
+const init = async () => {
+  const currentToken = await getToken(messaging, {
+    vapidKey: import.meta.env.VITE_FCM_VAPID_KEY,
+  });
+  if (currentToken) {
+    const ref = document.querySelector('.js-token');
+    ref.textContent = currentToken;
+    // Send the token to your server and update the UI if necessary
+    // ...
+  } else {
+    // Show permission request UI
+    console.log(
+      'No registration token available. Request permission to generate one.',
+    );
+    // ...
+  }
+  console.log(currentToken);
+};
+
+init();
 
 onMessage(messaging, payload => {
   console.log('Message received. ', payload);
