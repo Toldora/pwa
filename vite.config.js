@@ -25,33 +25,54 @@ export default defineConfig(({ mode, command }) => {
           },
         }
       : {}),
-    plugins: [
-      handlebars({
-        partialDirectory: path.resolve(__dirname, 'src/partials'),
-      }),
-      createHtmlPlugin({
-        minify: true,
-        entry: '/src/main.js',
-        template: '/index.html',
-      }),
-      createSvgIconsPlugin({
-        iconDirs: [path.resolve(__dirname, 'src/icons')],
-        symbolId: '[name]',
-      }),
-      ...(!isBuild && [fcmSwEnvPlugin()]),
-    ],
+    ...(isBuild
+      ? {
+          plugins: [
+            handlebars({
+              partialDirectory: path.resolve(__dirname, 'src/partials'),
+            }),
+            createHtmlPlugin({
+              minify: true,
+              entry: '/src/main.js',
+              template: '/index.html',
+            }),
+            createSvgIconsPlugin({
+              iconDirs: [path.resolve(__dirname, 'src/icons')],
+              symbolId: '[name]',
+            }),
+          ],
+        }
+      : {
+          plugins: [
+            handlebars({
+              partialDirectory: path.resolve(__dirname, 'src/partials'),
+            }),
+            createHtmlPlugin({
+              minify: true,
+              entry: '/src/main.js',
+              template: '/index.html',
+            }),
+            createSvgIconsPlugin({
+              iconDirs: [path.resolve(__dirname, 'src/icons')],
+              symbolId: '[name]',
+            }),
+            fcmSwEnvPlugin(),
+          ],
+        }),
     ...(isBuild && {
-      target: 'esnext',
-      rollupOptions: {
-        input: {
-          main: './index.html',
-          'firebase-messaging-sw': './src/firebase-messaging-sw.js',
-        },
-        output: {
-          entryFileNames: chunkInfo => {
-            return chunkInfo.name === 'firebase-messaging-sw'
-              ? '[name].js' // Output service worker in root
-              : 'assets/[name]-[hash].js'; // Others in `assets/`
+      build: {
+        target: 'esnext',
+        rollupOptions: {
+          input: {
+            main: './index.html',
+            'firebase-messaging-sw': './src/firebase-messaging-sw.js',
+          },
+          output: {
+            entryFileNames: chunkInfo => {
+              return chunkInfo.name === 'firebase-messaging-sw'
+                ? '[name].js' // Output service worker in root
+                : 'assets/[name]-[hash].js'; // Others in `assets/`
+            },
           },
         },
       },
