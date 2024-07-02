@@ -2,7 +2,7 @@ import '@/styles/index.scss';
 
 import 'virtual:svg-icons-register';
 import queryString from 'query-string';
-import '@/plugins';
+// import '@/plugins';
 import useViewportSizes from '@/utils/use-viewport-sizes';
 import '@/utils/expand-btn';
 import '@/utils/pwa';

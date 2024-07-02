@@ -5,13 +5,15 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import autoprefixer from 'autoprefixer';
 import * as fs from 'fs';
 import * as path from 'path';
+import { fcmSwEnvPlugin } from './config/vitePlugins';
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relative => path.resolve(appDirectory, relative);
 const root = path.resolve(__dirname, resolveApp('src'));
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  const isBuild = command === 'build';
 
   return {
     base: '/',
@@ -36,7 +38,24 @@ export default defineConfig(({ mode }) => {
         iconDirs: [path.resolve(__dirname, 'src/icons')],
         symbolId: '[name]',
       }),
+      ...(!isBuild && [fcmSwEnvPlugin()]),
     ],
+    ...(isBuild && {
+      target: 'esnext',
+      rollupOptions: {
+        input: {
+          main: './index.html',
+          'firebase-messaging-sw': './src/firebase-messaging-sw.js',
+        },
+        output: {
+          entryFileNames: chunkInfo => {
+            return chunkInfo.name === 'firebase-messaging-sw'
+              ? '[name].js' // Output service worker in root
+              : 'assets/[name]-[hash].js'; // Others in `assets/`
+          },
+        },
+      },
+    }),
     css: {
       preprocessorOptions: {
         scss: {

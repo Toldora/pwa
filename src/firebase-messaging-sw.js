@@ -1,5 +1,3 @@
-// IMPORTANT: This file only exists for dev mode purposes. Do not modify this file. Any changes should be made in `src/firebase-messaging-sw.js`.
-
 /* eslint-isable no-undef */
 console.log(typeof importScripts);
 if (typeof importScripts === 'function') {
@@ -9,7 +7,7 @@ if (typeof importScripts === 'function') {
   );
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCWKBO0OazGjtEugpR41mA7_cOSSDBkwjU",
+    apiKey: import.meta.env.VITE_FIREBASE_SDK_API_KEY,
     authDomain: 'mayan-pwa.firebaseapp.com',
     projectId: 'mayan-pwa',
     storageBucket: 'mayan-pwa.appspot.com',
@@ -41,7 +39,7 @@ if (typeof importScripts === 'function') {
 
   // const init = async () => {
   //   const currentToken = await getToken(messaging, {
-  //     vapidKey: "BGvJ8sO7rnjWVEuj9NDa0Jnpp0rhtp9PiknmOT0bIFhdymuXB2yXm2i8iY6jgbDa92GzJkHN-B7RzjxZS_MYYYM",
+  //     vapidKey: import.meta.env.VITE_FCM_VAPID_KEY,
   //   });
   //   if (currentToken) {
   //     const ref = document.querySelector('.js-token');

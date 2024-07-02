@@ -1,3 +1,6 @@
+# FCM (this file is only used for dev mode purposes)
+static/firebase-messaging-sw.js
+
 #Junk
 .DS_Store
 .vscode/
