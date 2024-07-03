@@ -1,10 +1,11 @@
 /* eslint-isable no-undef */
-console.log(typeof importScripts);
 if (typeof importScripts === 'function') {
   importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
   importScripts(
     'https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js',
   );
+  // import 'https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js';
+  // import 'https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js';
 
   const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_SDK_API_KEY,
@@ -25,56 +26,56 @@ if (typeof importScripts === 'function') {
     console.log('installed SW!');
   });
 
-  // const requestPermission = () => {
-  //   console.log('Requesting permission...');
-  //   Notification.requestPermission().then(permission => {
-  //     console.log(permission);
-  //     if (permission === 'granted') {
-  //       console.log('Notification permission granted.');
-  //     }
-  //   });
-  // };
+  const requestPermission = () => {
+    console.log('Requesting permission...');
+    Notification.requestPermission().then(permission => {
+      console.log(permission);
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+      }
+    });
+  };
 
-  // requestPermission();
+  requestPermission();
 
-  // const init = async () => {
-  //   const currentToken = await getToken(messaging, {
-  //     vapidKey: import.meta.env.VITE_FCM_VAPID_KEY,
-  //   });
-  //   if (currentToken) {
-  //     const ref = document.querySelector('.js-token');
-  //     ref.textContent = currentToken;
-  //     // Send the token to your server and update the UI if necessary
-  //     // ...
-  //   } else {
-  //     // Show permission request UI
-  //     console.log(
-  //       'No registration token available. Request permission to generate one.',
-  //     );
-  //     // ...
-  //   }
-  //   console.log(currentToken);
-  // };
+  const init = async () => {
+    const currentToken = await messaging.getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FCM_VAPID_KEY,
+    });
+    if (currentToken) {
+      const ref = document.querySelector('.js-token');
+      ref.textContent = currentToken;
+      // Send the token to your server and update the UI if necessary
+      // ...
+    } else {
+      // Show permission request UI
+      console.log(
+        'No registration token available. Request permission to generate one.',
+      );
+      // ...
+    }
+    console.log(currentToken);
+  };
 
-  // init();
+  init();
 
-  // onMessage(messaging, payload => {
-  //   console.log('Message received. ', payload);
-  //   // ...
-  // });
+  messaging.onMessage(messaging, payload => {
+    console.log('Message received. ', payload);
+    // ...
+  });
 
-  // onBackgroundMessage(messaging, payload => {
-  //   console.log(
-  //     '[firebase-messaging-sw.js] Received background message ',
-  //     payload,
-  //   );
-  //   // Customize notification here
-  //   const notificationTitle = 'Background Message Title';
-  //   const notificationOptions = {
-  //     body: 'Background Message body.',
-  //     icon: '/firebase-logo.png',
-  //   };
+  messaging.onBackgroundMessage(messaging, payload => {
+    console.log(
+      '[firebase-messaging-sw.js] Received background message ',
+      payload,
+    );
+    // Customize notification here
+    const notificationTitle = 'Background Message Title';
+    const notificationOptions = {
+      body: 'Background Message body.',
+      icon: '/firebase-logo.png',
+    };
 
-  //   self.registration.showNotification(notificationTitle, notificationOptions);
-  // });
+    self.registration.showNotification(notificationTitle, notificationOptions);
+  });
 }

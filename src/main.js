@@ -1,5 +1,5 @@
 import '@/styles/index.scss';
-
+// import './firebase-messaging-sw';
 import 'virtual:svg-icons-register';
 import queryString from 'query-string';
 // import '@/plugins';
