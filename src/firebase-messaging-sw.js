@@ -26,17 +26,17 @@ if (typeof importScripts === 'function') {
     console.log('installed SW!');
   });
 
-  const requestPermission = () => {
-    console.log('Requesting permission...');
-    Notification.requestPermission().then(permission => {
-      console.log(permission);
-      if (permission === 'granted') {
-        console.log('Notification permission granted.');
-      }
-    });
-  };
+  // const requestPermission = () => {
+  //   console.log('Requesting permission...');
+  //   Notification.requestPermission().then(permission => {
+  //     console.log(permission);
+  //     if (permission === 'granted') {
+  //       console.log('Notification permission granted.');
+  //     }
+  //   });
+  // };
 
-  requestPermission();
+  // requestPermission();
 
   const init = async () => {
     const currentToken = await messaging.getToken(messaging, {

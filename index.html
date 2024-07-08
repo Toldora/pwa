@@ -13,13 +13,13 @@
     <link href="/branding/favicon.png" rel="icon" />
     <link href="/branding/favicon.png" rel="icon" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/branding/favicon.png" />
-    <!-- <script>
+    <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/firebase-messaging-sw.js', {
-          scope: './',
-        });
+        navigator.serviceWorker.register('/sw.js');
+
+        // navigator.serviceWorker.register('./static/firebase-messaging-sw.js');
       }
-    </script> -->
+    </script>
 
     <title>Mayan Bet</title>
 
