@@ -66,7 +66,8 @@ self.addEventListener('push', function (event) {
 });
 
 async function sendSubscriptionToServer(subscription) {
-  const SERVER_URL = 'http://localhost:3030/subscriptions/save-subscription';
+  const SERVER_URL =
+    'http://api.pwa-test.mayanbet.cloud/subscriptions/save-subscription';
   const response = await fetch(SERVER_URL, {
     method: 'post',
     headers: {
