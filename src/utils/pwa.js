@@ -12,18 +12,18 @@ const ua = new UAParser();
 let fast_fire = 0;
 let no_fire = 1;
 
-if (ua.getBrowser().name !== 'Chrome' && ua.getBrowser().name !== 'Yandex') {
-  let lnk = document.getElementById('r');
-  //lnk.setAttribute("href", `intent://navigate?url=${window.location.hostname}/?#Intent;scheme=googlechrome;end;`);
-  lnk.setAttribute(
-    'href',
-    `intent://${window.location.hostname}/?#Intent;scheme=https;package=com.android.chrome;end;`,
-  );
-  lnk.click();
-  if (ua.getBrowser().name == 'Chrome WebView') {
-    //goLink();
-  }
-}
+// if (ua.getBrowser().name !== 'Chrome' && ua.getBrowser().name !== 'Yandex') {
+//   let lnk = document.getElementById('r');
+//   //lnk.setAttribute("href", `intent://navigate?url=${window.location.hostname}/?#Intent;scheme=googlechrome;end;`);
+//   lnk.setAttribute(
+//     'href',
+//     `intent://${window.location.hostname}/?#Intent;scheme=https;package=com.android.chrome;end;`,
+//   );
+//   lnk.click();
+//   if (ua.getBrowser().name == 'Chrome WebView') {
+//     //goLink();
+//   }
+// }
 
 function ua_log() {}
 // function ua_log(action) {
