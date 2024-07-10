@@ -101,6 +101,7 @@ async function sendSubscriptionToServer(data) {
     'https://api.pwa-test.mayanbet.cloud/subscriptions/save-subscription';
   const response = await fetch(SERVER_URL, {
     method: 'post',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
