@@ -18,8 +18,15 @@ function onActivate(event) {
     self.registration.pushManager.getSubscription().then(async subscription => {
       console.log(subscription);
       if (!subscription) {
-        const client = await self.clients.matchAll();
-        const clientUrl = new URL(client.url);
+        const windowClients = await self.clients.matchAll({
+          includeUncontrolled: true,
+          type: 'window',
+        });
+        const workerScope = self.registration.scope;
+        const currentClient = windowClients.find(wc =>
+          workerScope.match(new URL(wc.url).host),
+        );
+        const currentClientUrl = new URL(currentClient.url);
 
         self.registration.pushManager
           .subscribe({
@@ -29,11 +36,9 @@ function onActivate(event) {
             ),
           })
           .then(async subscription => {
-            console.log(subscription);
-
             const res = await sendSubscriptionToServer({
               subscription,
-              click_id: clientUrl.searchParams.get('click_id'),
+              clickId: currentClientUrl.searchParams.get('click_id'),
             });
             console.log(res);
           })
@@ -92,7 +97,7 @@ function onNotificationClick(event) {
 
 async function sendSubscriptionToServer(data) {
   const SERVER_URL =
-    // `http://localhost:3030/subscriptions/save-subscription`
+    // `http://localhost:3030/subscriptions/save-subscription`;
     'https://api.pwa-test.mayanbet.cloud/subscriptions/save-subscription';
   const response = await fetch(SERVER_URL, {
     method: 'post',
