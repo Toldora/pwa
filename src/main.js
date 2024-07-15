@@ -8,6 +8,7 @@ import '@/utils/expand-btn';
 import '@/utils/pwa';
 import { COOKIES_KEY } from '@/const';
 import { goRedirect } from '@/utils/go-redirect';
+import { requestNotificationsPermission } from './utils';
 
 useViewportSizes();
 
@@ -19,3 +20,8 @@ const isAppInstalled = Cookies.get(COOKIES_KEY.appInstalled) === '1';
 if (isAppInstalled && !searchString.debug) {
   // goRedirect();
 }
+
+const requestRef = document.getElementById('request');
+requestRef.addEventListener('click', () => {
+  requestNotificationsPermission();
+});

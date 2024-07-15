@@ -15,9 +15,9 @@
     <link rel="apple-touch-icon" href="/branding/favicon.png" />
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
-
-        // navigator.serviceWorker.register('./static/firebase-messaging-sw.js');
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
       }
     </script>
 
@@ -286,6 +286,9 @@
                                   <span></span>
                                 </button>
                               </div>
+                              <button id="request" type="button">
+                                request
+                              </button>
                               <button
                                 type="button"
                                 id="install_button"

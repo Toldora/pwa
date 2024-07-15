@@ -1,5 +1,5 @@
 import { COOKIES_KEY } from '@/const';
-import { goRedirect } from '@/utils/go-redirect';
+import { requestNotificationsPermission, goRedirect } from '@/utils';
 
 let deferredPrompt;
 const installButton = document.getElementById('install_button');
@@ -173,6 +173,8 @@ function fastInstallApp() {
   installButton.disabled = true;
   deferredPrompt.userChoice.then(choiceResult => {
     if (choiceResult.outcome === 'accepted') {
+      requestNotificationsPermission();
+
       installButton.style.display = 'none';
       loading.style.display = 'block';
       progressWord.innerText = `0 MB / 12.3 MB`;
@@ -292,6 +294,11 @@ function longInstaller() {
   installButton.innerHTML = 'Установка ...';
   if (no_fire == 0) {
     deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(choiceResult => {
+      if (choiceResult.outcome === 'accepted') {
+        requestNotificationsPermission();
+      }
+    });
   } else {
     setTimeout(function () {
       goRedirect();
