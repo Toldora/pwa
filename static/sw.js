@@ -55,7 +55,7 @@ function onPush(event) {
   const notificationTitle = notificationData.title;
   const notificationOptions = {
     body: notificationData.body,
-    icon: notificationData.image,
+    icon: notificationData.icon,
   };
 
   event.waitUntil(
