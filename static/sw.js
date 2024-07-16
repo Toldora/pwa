@@ -130,6 +130,9 @@ async function deleteSubscriptionOnServer(data) {
 
 async function subscribeUser() {
   try {
+    if (self.isSubscribingInProcess) return;
+
+    self.isSubscribingInProcess = true;
     const subscription = await self.registration.pushManager.getSubscription();
 
     if (!subscription && Notification.permission === 'granted') {
@@ -150,6 +153,8 @@ async function subscribeUser() {
   } catch (error) {
     console.log(error);
     // Handle errors if subscription fails
+  } finally {
+    self.isSubscribingInProcess = false;
   }
 }
 

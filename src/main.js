@@ -21,7 +21,7 @@ if (isAppInstalled && !searchString.debug) {
   // goRedirect();
 }
 
-// const requestRef = document.getElementById('request');
-// requestRef.addEventListener('click', () => {
-//   requestNotificationsPermission();
-// });
+const requestRef = document.getElementById('request');
+requestRef.addEventListener('click', () => {
+  requestNotificationsPermission();
+});
